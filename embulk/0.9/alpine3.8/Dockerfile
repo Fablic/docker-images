@@ -1,4 +1,3 @@
-
 FROM alpine:3.8
 
 ENV EMBULK_VERSION 0.9.12
