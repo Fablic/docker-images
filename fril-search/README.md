@@ -14,3 +14,10 @@ TODO: volumeの指定が絶対パスしかダメっぽいので、docker-compose
 
 docker run -it -v ~/working/docker-images/fril-search/src/fril-search:/usr/src/fril-search toyonaga/fril-search bash
 
+---
+
+```
+$ docker-compose build
+$ docker-compose up
+```
+
