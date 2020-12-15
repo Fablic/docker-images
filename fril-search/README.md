@@ -4,6 +4,8 @@
 
 fril-search リポジトリをセットする必要があります。
 
+※ makeコマンドが少し壊れてるみたいなので、`toyonaga-20201215` ブランチを使ってみてください。
+
 ```
 cd ${dir}/src
 git clone git@github.com:Fablic/fril-search.git
