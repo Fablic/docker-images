@@ -12,12 +12,12 @@ COPY ./src/fril-search $APP_ROOT
 WORKDIR $APP_ROOT
 RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=local bundle install
 
-### # Add a script to be executed every time the container starts.
-### COPY entrypoint.sh /usr/bin/
-### RUN chmod +x /usr/bin/entrypoint.sh
-### ENTRYPOINT ["entrypoint.sh"]
-# EXPOSE 3000
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
 
 # TODO: run
 # Start the main process.
-# CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["rails", "server", "-b", "0.0.0.0", "-e", "local"]
