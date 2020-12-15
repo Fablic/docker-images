@@ -1,10 +1,18 @@
 version: '3' # composeファイルのバーション指定
 services:
   app:
-    build: .
+    build:
+      context: .
+      # build するときに渡す引数
+      # Dockerfileでは、ARGで受け取る
+      args:
+        - bunlde_github_com=${BUNDLE_GITHUB__COM}
     tty: true # コンテナの起動永続化
     volumes:
       - ./src/fril-search:/usr/src/fril-search
     ports:
       # TODO: port決め
       - '9001:3000'
+    # TODO: コンテナに渡す引数
+    environment:
+      - BUNDLE_GITHUB__COM=${BUNDLE_GITHUB__COM}

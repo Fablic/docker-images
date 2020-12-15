@@ -1,17 +1,16 @@
 # base
 FROM fablic/ruby:2.5.7-mecab
-
 ENV APP_ROOT=/usr/src/fril-search
+ARG bunlde_github_com
 
 # TODO:
 # COPY -> bundle install とか
-# COPY ./ ./
 
 # TODO: dependency
-# ADD ./src/fril-search $APP_ROOT
+COPY ./src/fril-search $APP_ROOT
 
 WORKDIR $APP_ROOT
-# RUN RAILS_ENV=local bundle install
+RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=local bundle install
 
 ### # Add a script to be executed every time the container starts.
 ### COPY entrypoint.sh /usr/bin/
