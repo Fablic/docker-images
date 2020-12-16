@@ -1,13 +1,17 @@
 # base
 FROM fablic/ruby:2.5.7-mecab
 ENV APP_ROOT=/usr/src/fril-search
+ENV SRC_ROOT=./src/fril-search
 ARG bunlde_github_com
 
-# TODO: Gemfile, Gemfile.lock だけ渡す
-COPY ./src/fril-search $APP_ROOT
 
 WORKDIR $APP_ROOT
+
+COPY $SRC_ROOT/Gemfile $APP_ROOT/Gemfile
+COPY $SRC_ROOT/Gemfile.lock $APP_ROOT/Gemfile.lock
+
 RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=local bundle install
+COPY $SRC_ROOT $APP_ROOT
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/

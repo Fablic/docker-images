@@ -11,8 +11,9 @@ services:
     volumes:
       - ./src/fril-search:/usr/src/fril-search
     ports:
-      # TODO: port決め
+      # TODO: port決め (ローカルの開発環境を考える時に)
       - '9001:3000'
-    # TODO: コンテナに渡す引数
-    environment:
-      - BUNDLE_GITHUB__COM=${BUNDLE_GITHUB__COM}
+    # TODO: なくて問題なかったら消す
+    # コンテナに渡す引数
+    # environment:
+    #   - BUNDLE_GITHUB__COM=${BUNDLE_GITHUB__COM}
