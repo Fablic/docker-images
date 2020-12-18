@@ -15,8 +15,8 @@ WORKDIR $APP_ROOT
 COPY $SRC_ROOT/Gemfile $APP_ROOT/Gemfile
 COPY $SRC_ROOT/Gemfile.lock $APP_ROOT/Gemfile.lock
 
-# RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=${rails_env} bundle install --path vendor/bundle
-RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=${rails_env} bundle install
+RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=${rails_env} bundle install --path vendor/bundle
+### RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=${rails_env} bundle install
 COPY $SRC_ROOT $APP_ROOT
 
 # Add a script to be executed every time the container starts.
