@@ -1,0 +1,23 @@
+version: '3' # composeファイルのバーション指定
+services:
+  app:
+    build:
+      context: .
+      # build するときに渡す引数
+      # Dockerfileでは、ARGで受け取る
+      args:
+        - bunlde_github_com=${BUNDLE_GITHUB__COM}
+        # TODO: docker-composeで決まりか分からないので固定文字を渡します
+        - rails_env=local
+    tty: true # コンテナの起動永続化
+    volumes:
+      # コンテナのvendor以下をkeep
+      - /usr/src/fril-search/vendor
+      - ./src/fril-search:/usr/src/fril-search
+    ports:
+      # TODO: port決め (ローカルの開発環境を考える時に)
+      - '9001:3000'
+    # TODO: なくて問題なかったら消す
+    # コンテナに渡す引数
+    # environment:
+    #   - BUNDLE_GITHUB__COM=${BUNDLE_GITHUB__COM}
