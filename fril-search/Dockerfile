@@ -2,15 +2,21 @@
 FROM fablic/ruby:2.5.7-mecab
 ENV APP_ROOT=/usr/src/fril-search
 ENV SRC_ROOT=./src/fril-search
+ENV TZ=Asia/Tokyo
 ARG bunlde_github_com
+ARG rails_env
 
 
 WORKDIR $APP_ROOT
 
+### RUN addgroup --system app && adduser --system --group app app
+### USER app
+
 COPY $SRC_ROOT/Gemfile $APP_ROOT/Gemfile
 COPY $SRC_ROOT/Gemfile.lock $APP_ROOT/Gemfile.lock
 
-RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=local bundle install
+# RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=${rails_env} bundle install --path vendor/bundle
+RUN BUNDLE_GITHUB__COM=${bunlde_github_com}:x-oauth-basic RAILS_ENV=${rails_env} bundle install
 COPY $SRC_ROOT $APP_ROOT
 
 # Add a script to be executed every time the container starts.
@@ -20,4 +26,6 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0", "-e", "local"]
+# TODO: ここは上書きすると思うので、local は固定文字
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-e", "local"]
+## CMD ["tail", "-f", "/usr/bin/entrypoint.sh"]

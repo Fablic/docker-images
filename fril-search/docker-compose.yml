@@ -7,8 +7,12 @@ services:
       # Dockerfileでは、ARGで受け取る
       args:
         - bunlde_github_com=${BUNDLE_GITHUB__COM}
+        # TODO: docker-composeで決まりか分からないので固定文字を渡します
+        - rails_env=local
     tty: true # コンテナの起動永続化
     volumes:
+      # コンテナのvendor以下をkeep
+      - /usr/src/fril-search/vendor
       - ./src/fril-search:/usr/src/fril-search
     ports:
       # TODO: port決め (ローカルの開発環境を考える時に)
